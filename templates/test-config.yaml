@@ -12,7 +12,7 @@ spec:
     helm:
       values: |
         cloud_config: |
-          {{- .Values.cloud_config | nindent 10 }}
+          {{- .Values.cloud_config | nindent 12 }}
     path: .
     repoURL: 'https://github.com/mrysavy/test-config.git'
     targetRevision: HEAD
