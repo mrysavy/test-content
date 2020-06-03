@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-config
+  namespace: csas-argocd-sys
+spec:
+  destination:
+    namespace: csas-argocd-sys
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    helm:
+      values: |
+        cloud_config: |
+            '{ "cloud": "AzurePublicCloud",
+            "tenantId": "d2480fab-7029-4378-9e54-3b7a474eb327",
+            "aadClientId": "",
+            "aadClientSecret": "", "aadClientCertPath": "", "aadClientCertPassword": "",
+            "useManagedIdentityExtension": true, "userAssignedIdentityID": "",
+            "subscriptionId": "7504de90-f639-4328-a5b6-fde85e0a7fd9", "resourceGroup":
+            "toshi44-6vn9d-rg", "location": "westeurope", "vnetName": "toshi_vnet",
+            "vnetResourceGroup": "toshi_vnet_rg", "subnetName": "toshi-worker-subnet",
+            "securityGroupName": "toshi44-6vn9d-node-nsg", "routeTableName":
+            "toshi44-6vn9d-node-routetable", "primaryAvailabilitySetName": "", "vmType":
+            "", "primaryScaleSetName": "", "cloudProviderBackoff": true,
+            "cloudProviderBackoffRetries": 6, "cloudProviderBackoffExponent": 1.5,
+            "cloudProviderBackoffDuration": 5, "cloudProviderBackoffJitter": 1.0,
+            "cloudProviderRateLimit": true, "cloudProviderRateLimitQPS": 10,
+            "cloudProviderRateLimitBucket": 100, "cloudProviderRateLimitQPSWrite": 6,
+            "cloudProviderRateLimitBucketWrite": 10, "useInstanceMetadata": true,
+            "loadBalancerSku": "standard", "excludeMasterFromStandardLB": null,
+            "disableOutboundSNAT": null, "maximumLoadBalancerRuleCount": 0 }'
+    path: .
+    repoURL: 'https://github.com/mrysavy/test-config.git'
+    targetRevision: HEAD
